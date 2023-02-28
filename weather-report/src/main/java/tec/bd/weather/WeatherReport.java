@@ -22,9 +22,26 @@ public class WeatherReport {
             throw new IllegalArgumentException("Zip code out of range");
         }
 
-        var temperature = this.openWeatherService.getTemperature(zipCode);
-        var report = new Report();
-        report.setTemperature(temperature);
-        return report;
+        return this.openWeatherService.byZipCode(zipCode);
+        //var report = new Report();
+       // report.setTemperature(temperature);
+        //return report;
+    }
+    
+    // implementar esto
+    public Report getByCity(String city) {
+
+//        if (zipCode < 0) {
+//            throw new IllegalArgumentException("Negative values are not allowed");
+//        }
+//
+//        if (zipCode > ZIP_CODE_MAX_VALUE) {
+//            throw new IllegalArgumentException("Zip code out of range");
+//        }
+
+        return this.openWeatherService.byCity(city);
+        //var report = new Report();
+       // report.setTemperature(temperature);
+        //return report;
     }
 }

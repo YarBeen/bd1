@@ -1,7 +1,7 @@
 Weather Report
 ==============
 
-Nombre:
-Carnet:
+Nombre: Yarman Charpentier 
+Carnet: 2022363082
 
 

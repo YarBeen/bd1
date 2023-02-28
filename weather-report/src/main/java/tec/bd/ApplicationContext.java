@@ -3,6 +3,7 @@ package tec.bd;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tec.bd.weather.WeatherReport;
+import tec.bd.weather.service.IMNProvider;
 import tec.bd.weather.service.OpenWeatherResource;
 import tec.bd.weather.service.OpenWeatherService;
 import tec.bd.weather.service.WeatherService;
@@ -14,11 +15,13 @@ public class ApplicationContext {
     public OpenWeatherResource openWeatherResource;
     public WeatherService openWeatherService;
     private WeatherReport weatherReport;
+    public IMNProvider openIMNProvider;
 
     public static ApplicationContext init() {
         ApplicationContext appContext = new ApplicationContext();
         appContext.openWeatherResource = initOpenWeatherResource();
         appContext.openWeatherService = initOpenWeatherService(appContext.openWeatherResource);
+        appContext.openIMNProvider= new IMNProvider();
 
         return appContext;
     }

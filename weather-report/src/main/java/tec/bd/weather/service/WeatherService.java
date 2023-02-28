@@ -1,6 +1,10 @@
 package tec.bd.weather.service;
 
-public interface WeatherService {
+import tec.bd.weather.Report;
 
-    float getTemperature(int zipCode);
+public interface WeatherService {
+    public Report byZipCode(int zipCode);
+    public Report byCity(String city);
+
+    //float getTemperature(int zipCode);
 }

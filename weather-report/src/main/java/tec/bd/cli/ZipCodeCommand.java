@@ -22,7 +22,7 @@ public class ZipCodeCommand implements Runnable {
         var openWeatherService = APP_CONTEXT.openWeatherService;
         var weatherReport = new WeatherReport(openWeatherService);
         var report = weatherReport.getByZipCode(Integer.valueOf(zipCode));
-        System.out.println(report.getTemperature());
+        System.out.println(report.stringReport());
     }
 
 }

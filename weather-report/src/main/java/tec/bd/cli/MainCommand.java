@@ -8,7 +8,9 @@ import picocli.CommandLine.HelpCommand;
         subcommands = {
 //                WeatherCommand.class,
                 ZipCodeCommand.class,
-                HelpCommand.class
+                HelpCommand.class,
+                IMNCityCommand.class,
+                IMNZipCodeCommand.class
         },
         description = "Weather forecasts for cities around the world")
 public class MainCommand implements Runnable {
