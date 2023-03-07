@@ -14,8 +14,9 @@ public class WeatherByCityCommand implements Runnable {
     @Override
     public void run() {
 
+//
         var weatherService = APP_CONTEXT.getWeatherService();
-        var report = weatherService.getByCity(cityName);
-        System.out.println(report.toString());
+      var report = weatherService.getByCity(cityName);
+        System.out.println(report);
     }
 }

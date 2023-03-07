@@ -13,7 +13,8 @@ public class WeatherByZipCodeCommand implements Runnable {
 
     @Override
     public void run() {
-        var weatherService = APP_CONTEXT.getWeatherService();
+        
+        var weatherService = APP_CONTEXT.getWeatherService();       
         var report = weatherService.getByZipCode(zipCode);
         System.out.println(report);
     }

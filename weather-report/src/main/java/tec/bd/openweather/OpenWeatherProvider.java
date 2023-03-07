@@ -22,24 +22,35 @@ public class OpenWeatherProvider implements WeatherService {
     @Override
     public Report getByZipCode(String zipCode) {
         try {
+             
+
             var options = queryStringZipOptions(String.valueOf(zipCode));
             Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
             OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
             return mapToReportModel(openWeatherReport, ReportType.BY_ZIPCODE);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+           
             throw new RuntimeException("Error when calling open weather remote API");
         }
     }
 
     @Override
     public Report getByCity(String city) {
-        /*
-        *
-        * Esto necesita ser implementado
-        *
-        * */
-        return null;
+       try {
+             
+
+            var options = queryStringCityOptions(city);
+            Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
+            OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
+            Report report= mapToReportModel(openWeatherReport, ReportType.BY_CITY);
+            return report;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+           
+            throw new RuntimeException("Error when calling open weather remote API");
+        }
+    
     }
 
     private Report mapToReportModel(OpenWeatherReport openWeatherReport, ReportType reportType) {
@@ -57,5 +68,8 @@ public class OpenWeatherProvider implements WeatherService {
 
     private Map<String, String> queryStringZipOptions(String zipCode) {
         return Map.of("zip", zipCode, "appId", this.openWeatherAPIKeyProvider.getAPIKey());
+    }
+  private Map<String, String> queryStringCityOptions(String city) {
+        return Map.of("q", city, "appId", this.openWeatherAPIKeyProvider.getAPIKey());
     }
 }
