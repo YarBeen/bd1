@@ -25,8 +25,10 @@ public class OpenWeatherProvider implements WeatherService {
              
 
             var options = queryStringZipOptions(String.valueOf(zipCode));
+            
             Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
             OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
+          //  return new Report();
             return mapToReportModel(openWeatherReport, ReportType.BY_ZIPCODE);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -34,13 +36,19 @@ public class OpenWeatherProvider implements WeatherService {
             throw new RuntimeException("Error when calling open weather remote API");
         }
     }
-
+    @Override
+     public Report ByCity(String city){
+            
+            return null;
+        }
     @Override
     public Report getByCity(String city) {
+       
        try {
              
 
             var options = queryStringCityOptions(city);
+            System.out.println("1");
             Call<OpenWeatherReport> openWeatherReportCall = this.openWeatherResource.get(options);
             OpenWeatherReport openWeatherReport = openWeatherReportCall.execute().body();
             Report report= mapToReportModel(openWeatherReport, ReportType.BY_CITY);

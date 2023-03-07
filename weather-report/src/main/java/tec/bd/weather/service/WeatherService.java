@@ -7,4 +7,5 @@ public interface WeatherService {
     Report getByZipCode(String zipCode);
 
     Report getByCity(String city);
+    Report ByCity(String city);
 }

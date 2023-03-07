@@ -21,32 +21,39 @@ public class InMemoryWeatherReportStorage implements WeatherReportStorage {
      */
 
     @Override
-    public void save(Report report) {
-        db.put("un-key", report);
+    public void save(Report report,String key) {
+        db.put(key, report);
     }
 
     @Override
     public void remove(String reportKey) {
-
+        this.db.remove(reportKey);
     }
 
     @Override
-    public Report update(Report oldReport) {
-        return null;
+    public void update(String key, Report newReport) {
+        this.db.remove(key);
+        this.db.put(key, newReport);
     }
 
     @Override
     public Report find(String reportKey) {
-        return null;
+        
+            return db.get(reportKey);
+        
     }
 
     @Override
     public List<Report> find() {
         return null;
     }
-
-    private String generateKeyFromReport(Report report) {
-        var dateFormat = new SimpleDateFormat("dd-mm-YYYY");
-        return (dateFormat.format(report.getDate()) + "-" + report.getReportType());
+    @Override
+    public String generateKey(String cityOrZip) {
+        var now = java.time.LocalDate.now(); StringBuilder builder = new StringBuilder();
+        builder.append(now.toString()).append("^").append(cityOrZip);
+        return builder.toString();
+        
     }
+
+   
 }

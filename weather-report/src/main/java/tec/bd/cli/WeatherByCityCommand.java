@@ -2,6 +2,7 @@ package tec.bd.cli;
 
 import picocli.CommandLine;
 import tec.bd.ApplicationContext;
+import tec.bd.weather.model.Report;
 
 @CommandLine.Command(name = "city", description = "Get weather forecast for city")
 public class WeatherByCityCommand implements Runnable {
@@ -16,7 +17,9 @@ public class WeatherByCityCommand implements Runnable {
 
 //
         var weatherService = APP_CONTEXT.getWeatherService();
-      var report = weatherService.getByCity(cityName);
+        Report report = weatherService.getByCity(cityName);
+        System.out.println("2");
+       
         System.out.println(report);
     }
 }

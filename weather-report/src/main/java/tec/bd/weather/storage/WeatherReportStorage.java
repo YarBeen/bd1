@@ -6,13 +6,14 @@ import java.util.List;
 
 public interface WeatherReportStorage {
 
-    void save(Report report);
+    void save(Report report,String key);
 
     void remove(String reportKey);
 
-    Report update(Report oldReport);
+    void update(String key, Report newReport);
 
     Report find(String reportKey);
 
     List<Report> find();
+    String generateKey(String cityOrZip);
 }
